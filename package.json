@@ -1,0 +1,31 @@
+{
+  "name": "Prototype",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+      "postinstall": "install-app-deps",
+      "start": "electron ./app --enable-logging",
+      "dev": "NODE_ENV='development' npm run start",
+      "dist": "build -mwl --x64 --ia32
+      "start": "electron ."
+"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Lester Bryan T. Coloso <lester.coloso@mdscsi.com>",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.6.2",
+    "electron-builder": "^19.22.1"
+  },
+  "build": {
+    "appId": "hr.creaticon.prototype"
+  }
+}

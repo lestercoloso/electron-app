@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="./style/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <style>
+    .loader{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      position: absolute;
+      font-weight: bold;
+      width: 100%;
+    }
+    .loader div{
+      margin: auto;
+    }
+    .loader span{
+      position: relative;
+      top: 1px;
+      display: inline-block;
+      animation: bounce .5s ease infinite alternate;
+    }
+
+    .loader span:nth-child(1) { animation-delay: .1s; }
+    .loader span:nth-child(2) { animation-delay: .2s; }
+    .loader span:nth-child(3) { animation-delay: .3s; }
+    .loader span:nth-child(4) { animation-delay: .4s; }
+    .loader span:nth-child(5) { animation-delay: .5s; }
+    .loader span:nth-child(6) { animation-delay: .6s; }
+    .loader span:nth-child(7) { animation-delay: .7s; }
+    .loader span:nth-child(8) { animation-delay: .8s; }
+    .loader span:nth-child(9) { animation-delay: .9s; }
+    .loader span:nth-child(10) { animation-delay: .10s; }
+
+
+    .table{
+      margin: 20px auto;
+      width: 80%;
+      display: none;
+    }
+    </style>
+
+    <title>Prototype</title>
+  </head>
+  <body>
+
+  
+<table class="table table-bordered"> <thead> <tr> <th>ID</th> <th>Product Name</th> <th>Category</th> <th>Price</th> </tr> </thead><tbody> </tbody> </table>
+
+  <div class="loader">
+    <div>
+<span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span><span>.</span><span>.</span><span>.</span>
+    </div>
+  </div>
+
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+
+
+
+<script> 
+window.nodeRequire = require; 
+delete window.require;
+delete window.exports; delete window.module; 
+</script> 
+
+<script type="text/javascript"  src="./script/jquery.min.js"></script> 
+ 
+
+<script>
+  
+  var app = {
+     api_server: 'https://delivery.dunkindonuts.ph/api/',
+     thedata: '',
+     init: function(){
+      app.getdata();
+     },
+     getdata: function(){
+      $.get( app.api_server+"products?category=donuts", function( data ) {
+        var content = "";
+        $.each(data, function( index, value ) {
+          content +="<tr><td>"+value.id+"</td>"
+                  +"<td>"+value.name+"</td>"
+                  +"<td>"+value.category+"</td>"
+                  +"<td>"+value.price+"</td></tr>";
+        });
+        $('.table tbody').html(content);
+        $('.loader').hide();
+        $('.table').show();
+      },"json");
+     }
+
+  }
+
+  app.init();
+
+  
+
+
+</script>   
+</html>
